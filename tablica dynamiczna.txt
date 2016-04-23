@@ -33,3 +33,6 @@ int* przydzielpamiec(int rozmiar)
         *(wsk+i)=2*i+1;
     return wsk;
 }
+
+### Bêdzie edit ?
+Oto jest pytanie

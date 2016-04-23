@@ -1,0 +1,34 @@
+#include<stdio.h>
+#define ROZMIAR 5
+int min(int n,int * tab);
+void sortuj(int * tab);
+
+void main (void)
+{
+    int i;
+    int tab[5]={6,14,25,121,252555};
+    sortuj(tab);
+    for(i=0;i<ROZMIAR;i++)
+        printf("%d ",tab[i]);
+}
+int min(int n,int * tab)
+{
+    int i,min=n;
+    for(i=n;i<ROZMIAR;i++)
+        if(tab[i]<tab[min])
+            min=i;
+    return min;
+}
+void sortuj(int * tab)
+{
+    int i,k,pom;
+    for(i=0;i<ROZMIAR;i++)
+    {
+        k=min(i,tab);
+        pom=tab[i];
+        tab[i]=tab[k];
+        tab[k]=pom;
+
+    }
+}
+

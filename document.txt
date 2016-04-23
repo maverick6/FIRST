@@ -4,3 +4,6 @@ pierwszy tekst
 
 ## EDIT 5
 drugi tekst
+
+##EDIT 6
+trzeci tekst

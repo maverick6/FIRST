@@ -9,3 +9,7 @@ void main(void)
 
     printf("%.10lf",i);
 }
+
+
+### EDIT 4
+zadzia³a?

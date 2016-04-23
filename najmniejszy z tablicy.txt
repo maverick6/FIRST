@@ -32,3 +32,8 @@ void sortuj(int * tab)
     }
 }
 
+
+
+
+### EDIT 2 
+nowa zmiania

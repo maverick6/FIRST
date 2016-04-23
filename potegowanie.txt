@@ -41,3 +41,9 @@ int potega(int a,int potega1)
     return wynik=a*(potega(a,potega1));
 
 }
+
+
+
+
+### EDIT 3
+nowa lepsza zmiania

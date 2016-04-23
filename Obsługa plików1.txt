@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+int main ()
+{
+char ch,ch2,ch3,ch4,znak;
+znak='d';
+FILE *fp;
+FILE *wp; /* u¿ywamy metody wysokopoziomowej */
+/* musimy mieæ zatem identyfikator pliku, uwaga na gwiazdkê! */
+char tekst[] = "Hello worldehehhes\n\n";
+if ((fp=fopen("test.txt", "w"))==NULL) {
+printf ("Nie mogê otworzyæ pliku test.txt do zapisu!\n");
+exit(EXIT_FAILURE);
+}
+fprintf (fp, "%s", "Kuoa KUPA"); /* zapisz nasz ³añcuch w pliku */
+//putc(znak,fp); /* zapisuje znak w pliku*/
+/*
+ch=getc(fp);
+ch2=getc(fp);       /*pobiera znak z pliku*//*
+ch3=getc(fp);
+ch4=getc(fp);
+*/
+//printf("%c %c %c %c",ch,ch2,ch3,ch4);
+
+if(fclose(fp)!=0)
+    printf("blad"); /* zamknij plik */
+return 0;
+}

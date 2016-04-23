@@ -1,0 +1,11 @@
+#include<stdio.h>
+#include<math.h>
+
+void main(void)
+{
+    double i,k,n;
+    scanf("%lf",&n);
+    for(i=1.0;i*i*i<n;i=i+0.00000001);
+
+    printf("%.10lf",i);
+}

@@ -1,0 +1,43 @@
+#include<stdio.h>
+#define ROZMIAR 100
+int potega(int indp,int indo);
+
+void main(void)
+{
+    int a,potega1,x;
+    printf("Podaj liczbe ktora chcesz potegowac:\n");
+    while(scanf("%d",&a)==1 && a>=0)
+        {
+            printf("Podaj potege do ktorej chcesz podniesc dana liczbe:\n");
+            while(scanf("%d",&potega1)==1 && potega1>0)
+                {
+                    printf("%d do %d=%d\n",a,potega1,potega(a,potega1));
+                    printf("Czy chcesz kontynuowac potegowanie liczby %d?\n1)TAK\t\t2)NIE\n",a);
+                        if(scanf("%d",&x)==1&& x==1)
+                            printf("Podaj potege do ktorej chcesz podniesc dana liczbe:\n");
+                        else
+                            break;
+
+                }
+            printf("Czy chcesz kontynuowac potegowanie?\n1)TAK\t\t2)NIE\n");
+                        if(scanf("%d",&x)==1&& x==1)
+                            printf("Podaj liczbe ktora chcesz potegowac:\n");
+                        else
+                            break;
+
+        }
+
+}
+
+int potega(int a,int potega1)
+{
+    int wynik=1;
+    if(potega1<1)
+        return 1;
+    if(potega1>=1)
+        potega1--;
+
+
+    return wynik=a*(potega(a,potega1));
+
+}

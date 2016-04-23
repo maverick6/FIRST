@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<windows.h.>
+
+
+int** dodajtablice(int n)
+{
+    int i;
+    int **tab=calloc(n,sizeof(int*));
+    if(tab==NULL)
+        return NULL;
+    for(i=0;i<n;i++)
+    {
+        tab[i]=calloc(n,sizeof(int));
+        if(tab[i]==NULL)
+            return NULL;
+    }
+
+    return tab;
+}
+
+void kopiujtablice(int ***nowa,const int **stara, int n)
+{
+    int i,k;
+    for(i=0;i<n;i++)
+        for(k=0;k<n;k++)
+        {
+            *(*(*nowa+i)+k)=*(*(stara+i)+k);
+        }
+}
+
+void pokaztablice(int **tab,int n)
+{
+    int i,k;
+    for(i=0;i<n;i++)
+    {
+        for(k=0;k<n;k++)
+            printf("%4d",tab[i][k]);
+        putchar('\n');
+    }
+    putchar('\n');
+}
+
+void uzupelnijtablice(int **tab, int n)
+{
+    int i,k,x=1;
+    for(i=0;i<n;i++)
+        for(k=0;k<n;k++)
+        {
+            *(*(tab+i)+k)=x++;
+        }
+}
+
+int main(void)
+{
+    int n,m=0,x,y,p;
+    puts("Wpisz liczbe wierszy i kolumn:");
+    scanf("%d",&n);
+int **tab1=dodajtablice(n);
+    int **tab2=dodajtablice(n);
+
+    uzupelnijtablice(tab1,n);
+    pokaztablice(tab1,n);
+    puts("");
+    pokaztablice(tab2,n);
+    puts("");
+    kopiujtablice(&tab2,tab1,n);
+     puts("");
+    pokaztablice(tab1,n);
+    puts("");
+    pokaztablice(tab2,n);
+
+}

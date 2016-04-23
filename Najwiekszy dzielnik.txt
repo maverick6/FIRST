@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+void main(void)
+{
+ int i,k,n,m,mniejsza,dzielnik;
+
+ if(n<m)
+    mniejsza=n;
+ else
+    mniejsza=m;
+
+ scanf("%d %d",&n,&m);
+ for(i=1;i<=mniejsza;i++)
+    if(n%i==0 && m%i==0)
+        dzielnik=i;
+
+ printf("%d",dzielnik);
+
+
+}

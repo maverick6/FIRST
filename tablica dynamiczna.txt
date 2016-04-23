@@ -1,0 +1,35 @@
+#include<stdio.h>
+int* przydzielpamiec(int rozmiar);
+void main(void)
+{
+    int * wsk;
+    int k;
+    int rozmiar=0;
+    printf("Podaj rozmiar tablicy.\n");
+    scanf("%d",&rozmiar);
+    wsk=przydzielpamiec(rozmiar);
+
+    if(wsk==NULL)
+        puts("Blad przydzialu pamieci!/n");
+    else
+        {
+        printf("Kolejne liczby nieparzyste:");
+        for(k=0;k<rozmiar;k++)
+            printf("%3d ",*(wsk+k));
+        }
+
+    free(wsk);
+
+
+
+}
+
+int* przydzielpamiec(int rozmiar)
+{
+    int* wsk;
+    int i;
+    wsk=(int *)calloc(rozmiar,sizeof(int));
+    for(i=0;i<rozmiar;i++)
+        *(wsk+i)=2*i+1;
+    return wsk;
+}

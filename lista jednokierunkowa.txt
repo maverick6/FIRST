@@ -1,0 +1,206 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define ROZMIAR 30
+struct daneos {
+    char imie[ROZMIAR];
+    char nazwisko[ROZMIAR];
+    int rok;
+} struktura21;
+
+struct lista {
+    struct daneos struktura2;
+    struct lista *nast;
+} struktura1;
+
+int dodaj(struct lista **poczatek, struct daneos pierwsza)
+{
+    struct lista *tmp;
+    tmp=malloc(sizeof(struct lista));
+    if(tmp==NULL)
+    {
+        puts("Blad przydzialu pamieci!");
+        return 0;
+    }
+
+    tmp->struktura2=pierwsza;
+    tmp->nast=(*poczatek);
+    (*poczatek)=tmp;
+    return 1;
+
+}
+
+void wyswietl(struct lista *poczatek)
+{ struct lista *tmp;
+  for(tmp=poczatek; tmp!=NULL; tmp=tmp->nast)
+     {
+        puts("Imie:");
+        puts(tmp->struktura2.imie);
+        puts("Nazwisko:");
+        puts(tmp->struktura2.nazwisko);
+        puts("Rok urodzenia:");
+        printf("%d\n\n",tmp->struktura2.rok);
+     }
+}
+
+int wyszukaj(struct lista *poczatek, int rokurodzenia)
+{
+    int i=0;
+    struct lista *biezacy;
+    for(biezacy=poczatek;biezacy!=NULL;biezacy=biezacy->nast)
+    {
+        if(biezacy->struktura2.rok==rokurodzenia)
+        {
+            puts("Imie:");
+            puts(biezacy->struktura2.imie);
+            puts("Nazwisko:");
+            puts(biezacy->struktura2.nazwisko);
+            puts("");
+            i++;
+        }
+    }
+    return i;
+}
+
+void usun(struct lista **poczatek)
+{
+    if(*poczatek!=NULL)
+    {
+        struct lista *wsk;
+        wsk=((*poczatek)->nast);
+        free(*poczatek);
+        *poczatek=wsk;
+    }
+    else
+        puts("Nie ma zadnego elementu do usuniecia!");
+}
+struct lista* wyszukajwsrodku(struct lista *poczatek,int rokurodzenia)
+{
+    struct lista *wsk;
+    for(wsk=poczatek;wsk!=NULL;wsk=wsk->nast)
+        if(wsk->struktura2.rok==rokurodzenia)
+            return wsk;
+    return NULL;
+}
+
+void dodajwsrodku(struct lista *biezacy)
+{
+    struct lista *wsk;
+    wsk=malloc(sizeof(struct lista));
+    if(wsk==NULL)
+    {
+        puts("Blad przydzialu pamieci!");
+        return NULL;
+    }
+    puts("Podaj imie:");
+    scanf("%s",&(wsk->struktura2.imie));
+    puts("Podaj nazwisko:");
+    scanf("%s",&(wsk->struktura2.nazwisko));
+    puts("Podaj rok urodzenia:");
+    scanf("%d",&(wsk->struktura2.rok));
+
+    wsk->nast=biezacy->nast;
+    biezacy->nast=wsk;
+}
+
+void usunwszystko(struct lista **poczatek)
+{
+    struct lista *wsk;
+    if(*poczatek!=NULL)
+        {
+            for(wsk=(*poczatek);wsk!=NULL;)
+                usun(&wsk);
+            puts("Usunieto wszystkie elementy.");
+        }
+
+    else
+        puts("Nie ma elementow do usuniecia!");
+    *poczatek=NULL;
+}
+
+
+int main(void)
+{
+
+    int opcja;
+    struct lista *poczatek=NULL;
+    struct daneos pierwsza;
+    struct lista *wsk2;
+    int rokur=0;
+
+    puts("Wybierz opcje,wpisuj1c cyfre:");
+    puts("1.Dodawanie elementu na poczatek                    2.Wypisywanie elementów listy");
+    puts("3.Wyszukiwanie za pomoc1 roku urodzenia             4.Usuwanie elementu z pocz1tku listy");
+    puts("5.Dodawanie nowego elementu w dowolne miejsce       6.Usuwanie calej listy");
+    while(scanf("%d",&opcja)==1)
+    {
+        switch(opcja)
+        {
+        case 1:
+                    puts("Podaj imie:");
+                    scanf("%s",&(pierwsza.imie));
+                    puts("Podaj nazwisko:");
+                    scanf("%s",&(pierwsza.nazwisko));
+                    puts("Podaj rok urodzenia:");
+                    scanf("%d",&(pierwsza.rok));
+
+                    if(dodaj(&poczatek,pierwsza)==0)
+                    {
+                        puts("Blad przydzialu pamieci!");
+                        return 0;
+                    }
+                    break;
+
+        case 2:
+                    wyswietl(poczatek);
+                    break;
+
+        case 3:
+                    puts("Podaj rok urodzenia, wed3ug którego chcesz znaleYa elementy:");
+                    int rokurodzenia;
+                    scanf("%d",&rokurodzenia);
+                    int x=wyszukaj(poczatek,rokurodzenia);
+                    if(x==0)
+                        puts("Nie znaleziono zadnego elementu.");
+                    else if(x==1)
+                        puts("Znaleziono 1 element.");
+                    else
+                        printf("Znaleziono %d elementow.",x);
+                    break;
+
+        case 4:     usun(&poczatek);
+                    break;
+
+        case 5:     puts("Podaj rok urodzenia, wed3ug którego chcesz znaleYa element:");
+                    scanf("%d",&rokur);
+                    wsk2=wyszukajwsrodku(poczatek,rokur);
+                    if(wsk2!=NULL)
+                        dodajwsrodku(wsk2);
+                    else
+                        puts("Nie znaleziono takiego elementu!");
+                    break;
+
+        case 6:     usunwszystko(&poczatek);
+                    break;
+        }
+    int wybor;
+    puts("\nJesli chcesz kontynuowac wpisz 1, jesli nie 0");
+    scanf("%d",&wybor);
+    while(wybor!=1 && wybor!=0)
+    {
+    puts("Wpisz albo 1 albo 0!");
+    scanf("%d",&wybor);
+    if(wybor==0)
+        return 0;
+    }
+    if(wybor==1)
+    {
+        system("cls");
+        puts("Wybierz opcje,wpisuj1c cyfre:");
+        puts("1.Dodawanie elementu na poczatek                    2.Wypisywanie elementów listy");
+        puts("3.Wyszukiwanie za pomoc1 roku urodzenia             4.Usuwanie elementu z pocz1tku listy");
+        puts("5.Dodawanie nowego elementu w dowolne miejsce       6.Usuwanie ca3ej listy");
+    }
+    else if(wybor==0)
+        return 0;
+    }
+}

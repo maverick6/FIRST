@@ -31,3 +31,6 @@ void odwroc(int *tab, int indp,int indo)
 
 
 }
+
+
+### EDIT!

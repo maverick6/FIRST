@@ -7,3 +7,5 @@ drugi tekst
 
 ##EDIT 6
 trzeci tekst
+ ## EDdit
+
